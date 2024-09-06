@@ -5,16 +5,16 @@
   margin=0>
 </p>
   
-# How to Integrate the "Where To Stream" Widget
+# How to Integrate the BB Media Where To Stream Widget
 
-This document provides instructions on how to integrate the "Where To Stream" widget into your website. The widget helps users find where to stream movies or series across different platforms.
+This document provides instructions on how to integrate the Where To Stream widget into your website. The widget helps users find where to stream movies or series across different platforms.
 
 ## Integration Instructions
 To add the widget to your website, follow these steps:
 
-Add the Widget Container
+**Add the Widget Container**
 
-1. Insert the following HTML code into the desired location on your webpage:
+1. **Insert the following HTML code into the desired location on your webpage**:
   ```html
   <div id="WhereToStream" 
        wts-id="" 
@@ -28,14 +28,14 @@ Add the Widget Container
 - `wts-country`: Enter the country code to find availability.
 - `wts-tag`: Use a tag for referencing your site or partner using the widget.
   
-2. Include the Widget Script
+2. **Include the Widget Script**
   Add the following script tag to your HTML, ideally before the closing `</body>` tag:
 
 ```<script src="https://bb-media.com/widgets/where_to_stream.js"></script>```
 
 This script loads the widget functionality and ensures that it operates correctly on your page.
 
-Example
+**Example**
 Here is an example of how your HTML might look with the widget integrated:
 ```html
 <!DOCTYPE html>
@@ -65,7 +65,7 @@ Here is an example of how your HTML might look with the widget integrated:
 - `wts-tag`: Provide a tag for tracking or referencing purposes.
 
 ## Support
-For any issues or questions regarding the integration, please contact our support team at `support@bb-media.com`.
+For any issues or questions regarding the integration, please contact our support team at `[support@bb-media.com](mailto:support@bb-media.com)`.
 
 ## License
 This widget is provided under the MIT License. See the LICENSE file for more details.
