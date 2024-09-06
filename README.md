@@ -68,4 +68,4 @@ Here is an example of how your HTML might look with the widget integrated:
 For any issues or questions regarding the integration, please contact our support team at [support@bb-media.com](mailto:support@bb-media.com).
 
 ## License
-This widget is provided under the MIT License. See the LICENSE file for more details.
+This widget is provided under the MIT License. See the [LICENSE](https://github.com/BB-Media-IT/Widget-Where-to-Stream/blob/main/LICENSE) file for more details.
