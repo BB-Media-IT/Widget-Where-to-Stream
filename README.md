@@ -65,7 +65,7 @@ Here is an example of how your HTML might look with the widget integrated:
 - `wts-tag`: Provide a tag for tracking or referencing purposes.
 
 ## Support
-For any issues or questions regarding the integration, please contact our support team at `[support@bb-media.com](mailto:support@bb-media.com)`.
+For any issues or questions regarding the integration, please contact our support team at [support@bb-media.com](mailto:support@bb-media.com).
 
 ## License
 This widget is provided under the MIT License. See the LICENSE file for more details.
