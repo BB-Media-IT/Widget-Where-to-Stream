@@ -1,3 +1,10 @@
+<p align="center">
+<image
+  src="https://github.com/BB-Media-IT/.github/assets/4085605/c08bf803-09ca-420c-b728-8f6ea85b3aa2"
+  height=120
+  margin=0>
+</p>
+  
 # How to Integrate the "Where To Stream" Widget
 
 This document provides instructions on how to integrate the "Where To Stream" widget into your website. The widget helps users find where to stream movies or series across different platforms.
