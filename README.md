@@ -57,6 +57,9 @@ Here is an example of how your HTML might look with the widget integrated:
 </body>
 </html>
 ```
+## Preview
+![image](https://github.com/user-attachments/assets/b6109c01-c389-4faa-ad81-3cc9967fde69)
+
 
 ## Customization
 - `wts-id` : Replace with the appropriate ID from your data source.
