@@ -7,22 +7,219 @@
     <script src="https://unpkg.com/vue@3/dist/vue.global.js"></script>
 </head>
 <body>
-    <div id="app">{{ message }}</div>
+    <div id="app">
+        <p>{{ message }}</p>
+
+        <!-- Inputs for dynamic attributes -->
+        <label for="wts-id">ID:</label>
+        <input v-model="wtsId" id="wts-id" placeholder="Enter ID">
+
+        <label for="wts-type">Type:</label>
+        <input v-model="wtsType" id="wts-type" placeholder="Enter Type">
+
+        <label for="wts-country">Country:</label>
+        <input v-model="wtsCountry" id="wts-country" placeholder="Enter Country">
+
+        <label for="wts-tag">Tag:</label>
+        <input v-model="wtsTag" id="wts-tag" placeholder="Enter Tag">
+
+        <label for="wts-provider">Provider:</label>
+        <input v-model="wtsProvider" id="wts-provider" placeholder="Enter Provider">
+
+        <!-- Widget div with dynamic attributes -->
+        <div 
+            id="WhereToStream" 
+            :wts-id="wtsId" 
+            :wts-type="wtsType" 
+            :wts-country="wtsCountry" 
+            :wts-tag="wtsTag" 
+            :wts-provider="wtsProvider">
+        </div>
+
+        <button @click="reloadScript">Reload Script</button>
+    </div>
 
     <script>
-      const { createApp, ref } = Vue
-    
+      const { createApp, ref, nextTick, onMounted, watch } = Vue;
+
       createApp({
         setup() {
-          const message = ref('Hello vue!')
+          const message = ref('Hello Vue!');
+          const wtsId = ref('tt0060028');
+          const wtsType = ref('series');
+          const wtsCountry = ref('AR');
+          const wtsTag = ref('wts');
+          const wtsProvider = ref('imdb');
+
+          // Function to fetch and update the widget content
+          const updateWidgetContent = async () => {
+            const container = document.getElementById('WhereToStream');
+            const id = wtsId.value;
+            const type = wtsType.value;
+            const country = wtsCountry.value;
+            const tag = wtsTag.value;
+            const provider = wtsProvider.value;
+            const apiUrl = `https://middle.bb-media.com/proxy?id=${id}&type=${type}&country=${country}&provider=${provider}`;
+
+            const style = document.createElement('style');
+            style.innerHTML = `
+                #WhereToStream {
+                    position: relative;
+                    min-height: 100px;
+                }
+                #loading {
+                    display: none; 
+                    position: absolute;
+                    top: 50%;
+                    left: 50%;
+                    transform: translate(-50%, -50%);
+                }
+                #loading .wts_spinner {
+                    border: 8px solid #f3f3f3;
+                    border-radius: 50%;
+                    border-top: 8px solid #3498db;
+                    width: 20px;
+                    height: 20px;
+                    animation: spin 1s linear infinite;
+                }
+                @keyframes spin {
+                    0% { transform: rotate(0deg); }
+                    100% { transform: rotate(360deg); }
+                }
+                #WhereToStream {
+                    font-family: Arial, sans-serif;
+                    background-color: #FCFCFC;
+                    padding: 10px 20px 20px 21px;
+                    border: 1px solid #F2F2F2;
+                    border-radius: 5px;
+                    max-width: 480px;
+                    margin: 20px auto;
+                }
+                #WhereToStream h2 {
+                    color: #C41F46;
+                    font-size: 14px;
+                    margin-bottom: 10px;
+                }
+                #WhereToStream p {
+                    font-size: 1.1em;
+                    margin-bottom: 15px;
+                }
+                #WhereToStream pre {
+                    background-color: #eee;
+                    padding: 10px;
+                    border-radius: 5px;
+                    overflow: auto;
+                }
+
+                .availability-list {
+                    display: flex;
+                    flex-wrap: wrap; 
+                    gap: 10px;
+                    margin-top: 20px;
+                    margin-bottom: 20px;
+                }
+
+                .availability-item {
+                    display: flex;
+                    align-items: center;
+                    justify-content: flex-start;
+                }
+
+                .availability-list .availability-item:first-child {
+                    margin-left: 0; 
+                }
+
+                .availability-item img {
+                    width: 50px;
+                    height: auto;
+                    margin-right: 10px;
+                }
+
+                .availability-item a {
+                    text-decoration: none;
+                    color: #3498db;
+                }
+
+                .availability-item a:hover {
+                    text-decoration: underline;
+                }
+
+                .brand_wts {
+                    position: absolute;
+                    display: flex;
+                    flex-wrap: wrap; 
+                    align-items: center;
+                    justify-content: flex-start;
+                    bottom: 0px;
+                    right: 0px;
+                    font-family: Arial, sans-serif;
+                    font-weight: 100px;
+                    font-size: 10px;
+                }
+            `;
+            document.head.appendChild(style);
+
+            const loading = document.createElement('div');
+            loading.id = 'loading';
+            loading.innerHTML = '<div class="wts_spinner"></div>';
+            container.appendChild(loading);
+
+            loading.style.display = 'block';
+
+            try {
+              const response = await fetch(apiUrl, { method: 'GET' });
+              const data = await response.json();
+
+              // Crear el contenido para el contenedor
+              let content = `
+                  <h2>Where to stream</h2>
+                  <div class="availability-list">
+              `;
+              
+              // Agregar ítems de disponibilidad
+              if (data.availability && data.availability.length > 0) {
+                  const uniqueItems = data.availability.filter((item, index, self) => 
+                      index === self.findIndex((t) => t.name === item.name)
+                  );
+
+                  content += uniqueItems.map(item => `
+                      <div class="availability-item">
+                          <a href="${item.url}" target="_blank"><img src="${item.logo}" alt="${item.name}"></a>
+                      </div>
+                  `).join('');
+              } else {
+                  content += '<p>No availability found.</p>';
+              }
+
+              content += '</div>';
+              container.innerHTML = content;
+              loading.style.display = 'none';
+            } catch (error) {
+              console.error('Error fetching data:', error);
+              container.innerHTML = '<p>Error loading data.</p>';
+              loading.style.display = 'none';
+            }
+          };
+
+          // Watch for changes in the attributes and update the widget content
+          watch([wtsId, wtsType, wtsCountry, wtsTag, wtsProvider], updateWidgetContent);
+
+          // Load widget content initially
+          onMounted(() => {
+            updateWidgetContent();
+          });
+
           return {
-            message
-          }
+            message,
+            wtsId,
+            wtsType,
+            wtsCountry,
+            wtsTag,
+            wtsProvider,
+            updateWidgetContent
+          };
         }
-      }).mount('#app')
+      }).mount('#app');
     </script>
-    
-    <div id="WhereToStream" wts-id="tt0060028" wts-type="series" wts-country="AR" wts-tag="wts" wts-provider="imdb"></div>
-    <script src="https://dlv.nyc3.cdn.digitaloceanspaces.com/widgets/where-to-stream/where_to_stream.js"></script>
 </body>
-</html> 
+</html>
