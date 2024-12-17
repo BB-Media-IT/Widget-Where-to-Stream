@@ -80,7 +80,7 @@
                         <span class="badge text-bg-light">wts-id</span> Identify the supplier with the appropriate code: <span class="badge rounded-pill text-bg-dark">imdb</span> <span class="badge rounded-pill text-bg-dark">tmdb</span> <span class="badge rounded-pill text-bg-dark">tvdb</span> <span class="badge rounded-pill text-bg-dark">eidr</span> <span class="badge rounded-pill text-bg-dark">bb</span><br/>
                         <span class="badge text-bg-light">wts-type</span> Specify the type of content (movie or series). <br/>
                         <span class="badge text-bg-light">wts-country</span> Enter the country code to find availability. <br/>
-                        <span class="badge text-bg-light">wts-tag</span> Use a tag for referencing your site or partner using the widget. <br/>
+                        <span class="badge text-bg-light">wts-tag</span> Use a tag to reference your site or partner that BB Media delivered to you. <br/>
                     </p><br/>                
                     <h5>
                         2. Add the Script Code
@@ -142,7 +142,7 @@
                                 <td><b>wts-country</b></td> <td>Use the ISO 3166-1 alpha-2 country code to specify the region.</td>
                             </tr>
                             <tr>
-                                <td><b>wts-tag</b></td> <td>Provide a tag for tracking or referencing purposes.</td>
+                                <td><b>wts-tag</b></td> <td>Tag provided by BB Media.</td>
                             </tr>
                         </tbody>
                     </table>
@@ -450,7 +450,7 @@
                     <label for="wts-tag" class="form-label">Your Tag</label>
                     <input type="text" class="form-control" id="wts-tag" v-model="wtsTag" placeholder="Enter Tag" disabled>
                     <div class="form-text">
-                        This value is applied in attribute <span class="badge text-bg-light">wts-tag</span> (Tag provided by BB Media)
+                        This value is applied in attribute <span class="badge text-bg-light">wts-tag</span>
                     </div>
                 </div>
                 <div class="mb-3">
