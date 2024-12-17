@@ -18,12 +18,14 @@ To add the widget to your website, follow these steps:
   ```html
   <div id="WhereToStream" 
        wts-id="" 
+       wts-provider=""
        wts-type="" 
        wts-country="" 
        wts-tag="">
   </div>
   ```
-- `wts-id`: Provide the ID from the source (IMDb, TMDB, TVDB, EIDR, BB Media, Wikidata).
+- `wts-id`: Provide the ID from the source (IMDb, TMDB, TVDB, EIDR, BB Media).
+- `wts-provider`: Identify the supplier with the appropriate code: <span class="badge rounded-pill text-bg-dark">imdb</span> <span class="badge rounded-pill text-bg-dark">tmdb</span> <span class="badge rounded-pill text-bg-dark">tvdb</span> <span class="badge rounded-pill text-bg-dark">eidr</span> <span class="badge rounded-pill text-bg-dark">bb</span>
 - `wts-type`: Specify the type of content (movie or series).
 - `wts-country`: Enter the country code to find availability.
 - `wts-tag`: Use a tag for referencing your site or partner using the widget.
@@ -48,6 +50,7 @@ Here is an example of how your HTML might look with the widget integrated:
 <body>
     <div id="WhereToStream" 
          wts-id="tt1234567" 
+         wts-provider="imdb"
          wts-type="movie" 
          wts-country="US" 
          wts-tag="example-site">
@@ -63,9 +66,10 @@ Here is an example of how your HTML might look with the widget integrated:
 
 ## Customization
 - `wts-id` : Replace with the appropriate ID from your data source.
+- `wts-provider` : Replace it with the appropriate provider.
 - `wts-type`: Choose `movie` or `series` based on the content you want to display.
 - `wts-country`: Use the ISO 3166-1 alpha-2 country code to specify the region.
-- `wts-tag`: Provide a tag for tracking or referencing purposes.
+- `wts-tag`: Tag provided by BB Media.
 
 ## Support
 For any issues or questions regarding the integration, please contact our support team at [support@bb-media.com](mailto:support@bb-media.com).
