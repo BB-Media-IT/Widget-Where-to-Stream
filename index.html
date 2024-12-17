@@ -4,50 +4,472 @@
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <title>Widget where to stream</title>
+ 
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-QWTKZyjpPEjISv5WaRU9OFeRpok6YctnYmDr5pNlyT2bRjXh0JMhjY6hW+ALEwIH" crossorigin="anonymous">
     <script src="https://unpkg.com/vue@3/dist/vue.global.js"></script>
+    <link href="/assets/style.css" rel="stylesheet">
   </head>
   <body>
-    <div class=".container-md">
-        
     <div id="app">
-        <!-- Inputs for dynamic attributes -->
-        <label for="wts-id">ID:</label>
-        <input v-model="wtsId" id="wts-id" placeholder="Enter ID">
-
-        <label for="wts-type">Type:</label>
-        <input v-model="wtsType" id="wts-type" placeholder="Enter Type">
-
-        <label for="wts-country">Country:</label>
-        <input v-model="wtsCountry" id="wts-country" placeholder="Enter Country">
-
-        <label for="wts-tag">Tag:</label>
-        <input v-model="wtsTag" id="wts-tag" placeholder="Enter Tag">
-
-        <label for="wts-provider">Provider:</label>
-        <input v-model="wtsProvider" id="wts-provider" placeholder="Enter Provider">
-
-        <!-- Widget div with dynamic attributes -->
-        <div 
-            id="WhereToStream" 
-            :wts-id="wtsId" 
-            :wts-type="wtsType" 
-            :wts-country="wtsCountry" 
-            :wts-tag="wtsTag" 
-            :wts-provider="wtsProvider">
+    <div class="hero-home">
+        <div class="container hero-row">
+            <div class="row align-items-center">
+                <div class="col-5">
+                    <image src="https://bb-media.com/wp-content/uploads/2024/08/bb-LOGO.png" height="100px"></image>
+                </div>
+                <div class="col-7 hero-text-right">
+                    <p>
+                        BB Media's <b>Where To Stream widget</b> is a tool that allows users to find where they 
+                        can stream movies or series on different platforms. 
+                        This component is ideal for integration into media and entertainment related websites, 
+                        providing visitors with a quick and easy way to find out where the content they are looking for is available.
+                    </p>
+                </div>
+            </div>
         </div>
     </div>
-    
-    </div>
+    <div class="container">
+        <div class="row">
+            <!-- Menú -->
+            <div class="col-2 align-self-start anclado">
+                <ul class="nav flex-column">
+                    <li class="nav-item">
+                      <a class="nav-link active" aria-current="page" href="#getting-started">Getting started</a>
+                    </li>
+                    <li class="nav-item">
+                      <a class="nav-link" href="#customize">Customize</a>
+                    </li>
+                    <li class="nav-item">
+                      <a class="nav-link" href="#support">Support</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="#pricing">Pricing</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="https://bb-media.com">Visit our main site</a>
+                    </li>
+                </ul>
+            </div>
+            <!-- Menú -->
 
+            <!-- Instructions -->
+            <div class="col-7 border-lines">
+                <div class="section_block">
+                    <h3 id="getting-started">
+                        Integration Instructions
+                    </h3>
+                    <p>
+                        To add the widget to your website, follow these steps:
+                    </p>
+                    <h5>
+                        1. Add the Widget Container
+                    </h5>
+                    <p>
+                        Insert the following HTML code into the desired location on your webpage: <br/><br/>
+                        <code>
+                            &lt;div id=&quot;WhereToStream&quot;
+                                wts-id=&quot;&quot;
+                                wts-provider=&quot;&quot;
+                                wts-type=&quot;&quot;
+                                wts-country=&quot;&quot;
+                                wts-tag=&quot;&quot;&gt;&lt;/div&gt;
+                        </code>  <br/><br/>
+
+                        <span class="badge text-bg-light">wts-id</span> Provide the ID from the source (IMDb, TMDB, TVDB, EIDR, BB Media). <br/>
+                        <span class="badge text-bg-light">wts-id</span> Identify the supplier with the appropriate code: <span class="badge rounded-pill text-bg-dark">imdb</span> <span class="badge rounded-pill text-bg-dark">tmdb</span> <span class="badge rounded-pill text-bg-dark">tvdb</span> <span class="badge rounded-pill text-bg-dark">eidr</span> <span class="badge rounded-pill text-bg-dark">bb</span><br/>
+                        <span class="badge text-bg-light">wts-type</span> Specify the type of content (movie or series). <br/>
+                        <span class="badge text-bg-light">wts-country</span> Enter the country code to find availability. <br/>
+                        <span class="badge text-bg-light">wts-tag</span> Use a tag for referencing your site or partner using the widget. <br/>
+                    </p><br/>                
+                    <h5>
+                        2. Add the Script Code
+                    </h5>
+                    <p>
+                        Include the Widget Script Add the following script tag to your HTML, ideally before the closing <code>&lt;/body&gt;</code> tag: 
+                        <code> &lt;script src="https://bb-media.com/widgets/where_to_stream.js"&gt;&lt;/script&gt;</code> <br/><br/>
+
+                        This script loads the widget functionality and ensures that it operates correctly on your page. Here is an example of how your HTML might look with the widget integrated:
+                    </p>
+                    <div class="pre-code">
+                    <pre>
+&lt;!DOCTYPE html&gt;
+&lt;html lang=&quot;en&quot;&gt;
+    &lt;head&gt;
+        &lt;meta charset=&quot;UTF-8&quot;&gt;
+        &lt;meta name=&quot;viewport&quot; content=&quot;width=device-width, initial-scale=1.0&quot;&gt;
+        &lt;title&gt;Streaming Widget Example&lt;/title&gt;
+    &lt;/head&gt;
+    &lt;body&gt;
+        &lt;div id=&quot;WhereToStream&quot; 
+                wts-id=&quot;tt1520211&quot;
+                wts-provider=&quot;imdb&quot; 
+                wts-type=&quot;series&quot; 
+                wts-country=&quot;US&quot; 
+                wts-tag=&quot;example-site&quot;&gt;
+        &lt;/div&gt;
+
+        &lt;script src=&quot;https://bb-media.com/widgets/where_to_stream.js&quot;&gt;&lt;/script&gt;
+    &lt;/body&gt;
+&lt;/html&gt;                            
+                    </pre>
+                    </div>
+                </div>
+
+                <div class="section_block">
+                    <h3 id="customize">Customize</h3>
+                    <p>
+                        To customize, you only need to dynamically or manually modify the following attributes. You can do it in real time on this website to see how it works; see the <b>Customize</b> panel on the right.
+                    </p>
+                    <table class="table">
+                        <thead>
+                            <tr>
+                                <th>Attributes</th>
+                                <th>Description</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr>
+                                <td><b>wts-id</b></td><td>Replace with the appropriate ID from your data source.</td>
+                            </tr>
+                            <tr>
+                                <td><b>wts-provider</b></td><td>Replace it with the appropriate provider.</td>
+                            </tr>
+                            <tr>
+                                <td><b>wts-type</b></td> <td>Choose movie or series based on the content you want to display.</td>
+                            </tr>
+                            <tr>
+                                <td><b>wts-country</b></td> <td>Use the ISO 3166-1 alpha-2 country code to specify the region.</td>
+                            </tr>
+                            <tr>
+                                <td><b>wts-tag</b></td> <td>Provide a tag for tracking or referencing purposes.</td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+
+                <!-- Widget div with dynamic attributes -->
+                <div 
+                    id="WhereToStream" 
+                    :wts-id="wtsId" 
+                    :wts-type="wtsType" 
+                    :wts-country="wtsCountry" 
+                    :wts-tag="wtsTag" 
+                    :wts-provider="wtsProvider" class="section_block">
+                </div>
+                <!-- Widget div with dynamic attributes -->
+
+                <div class="section_block">
+                    <h3 id="#support">Support</h3>
+                    <p>For any issues or questions regarding the integration, please contact our support team at <a href="mailto:support@bb-media.com">support@bb-media.com</a>.</p>
+                </div>
+
+                <div class="section_block">
+                    <h3 id="pricing">Pricing</h3>
+                    <p>Elevate your streaming experience with the Widget Where To Stream! This powerful tool helps you find where to watch your favorite movies and series across various platforms. We offer flexible purchasing options to fit your needs, contact us at <a href="mailto:hi@bb-media.com">hi@bb-media.com</a>.</p>
+                </div>
+            </div>
+            <!-- Instructions -->
+
+            <!-- Customize the widget -->
+            <div class="col-3 align-self-start anclado">
+                <div class="mb-3">
+                    <label for="wts-id" class="form-label">Content Id</label>
+                    <input type="text" class="form-control" id="wts-id" v-model="wtsId" placeholder="Enter Id">
+                    <div class="form-text">
+                        This value is applied in attribute <span class="badge text-bg-light">wts-id</span>
+                    </div>
+                </div>
+                <div class="mb-3">
+                    <label for="wts-type" class="form-label">Content Type</label>
+                    <select class="form-select" id="wts-type" v-model="wtsType" placeholder="Enter Type" aria-label="Enter Type">
+                        <option value="series">Series</option>
+                        <option value="movie">Movie</option>
+                    </select>
+                    <div class="form-text">
+                        This value is applied in attribute <span class="badge text-bg-light">wts-type</span>
+                    </div>
+                </div>
+                <div class="mb-3">
+                    <label for="wts-country" class="form-label">Region or Country</label>
+                    <select class="form-select"id="wts-country" v-model="wtsCountry" placeholder="Enter Country"  aria-label="Enter Country">
+                        <option value="AF">Afghanistan</option>
+                        <option value="AL">Albania</option>
+                        <option value="DZ">Algeria</option>
+                        <option value="AS">American Samoa</option>
+                        <option value="AD">Andorra</option>
+                        <option value="AO">Angola</option>
+                        <option value="AI">Anguilla</option>
+                        <option value="AQ">Antarctica</option>
+                        <option value="AG">Antigua and Barbuda</option>
+                        <option value="AR">Argentina</option>
+                        <option value="AM">Armenia</option>
+                        <option value="AW">Aruba</option>
+                        <option value="AU">Australia</option>
+                        <option value="AT">Austria</option>
+                        <option value="AZ">Azerbaijan</option>
+                        <option value="BS">Bahamas</option>
+                        <option value="BH">Bahrain</option>
+                        <option value="BD">Bangladesh</option>
+                        <option value="BB">Barbados</option>
+                        <option value="BY">Belarus</option>
+                        <option value="BE">Belgium</option>
+                        <option value="BZ">Belize</option>
+                        <option value="BJ">Benin</option>
+                        <option value="BM">Bermuda</option>
+                        <option value="BT">Bhutan</option>
+                        <option value="BO">Bolivia</option>
+                        <option value="BQ">Bonaire, Sint Eustatius and Saba</option>
+                        <option value="BA">Bosnia and Herzegovina</option>
+                        <option value="BW">Botswana</option>
+                        <option value="BR">Brazil</option>
+                        <option value="IO">British Indian Ocean Territory</option>
+                        <option value="BN">Brunei Darussalam</option>
+                        <option value="BG">Bulgaria</option>
+                        <option value="BF">Burkina Faso</option>
+                        <option value="BI">Burundi</option>
+                        <option value="KH">Cambodia</option>
+                        <option value="CM">Cameroon</option>
+                        <option value="CA">Canada</option>
+                        <option value="CV">Cape Verde</option>
+                        <option value="KY">Cayman Islands</option>
+                        <option value="CF">Central African Republic</option>
+                        <option value="TD">Chad</option>
+                        <option value="CL">Chile</option>
+                        <option value="CN">China</option>
+                        <option value="CX">Christmas Island</option>
+                        <option value="CC">Cocos (Keeling) Islands</option>
+                        <option value="CO">Colombia</option>
+                        <option value="KM">Comoros</option>
+                        <option value="CG">Congo</option>
+                        <option value="CD">Congo (Democratic Republic)</option>
+                        <option value="CK">Cook Islands</option>
+                        <option value="CR">Costa Rica</option>
+                        <option value="HR">Croatia</option>
+                        <option value="CU">Cuba</option>
+                        <option value="CW">Curaçao</option>
+                        <option value="CY">Cyprus</option>
+                        <option value="CZ">Czech Republic</option>
+                        <option value="DK">Denmark</option>
+                        <option value="DJ">Djibouti</option>
+                        <option value="DM">Dominica</option>
+                        <option value="DO">Dominican Republic</option>
+                        <option value="EC">Ecuador</option>
+                        <option value="EG">Egypt</option>
+                        <option value="SV">El Salvador</option>
+                        <option value="GQ">Equatorial Guinea</option>
+                        <option value="ER">Eritrea</option>
+                        <option value="EE">Estonia</option>
+                        <option value="SZ">Eswatini</option>
+                        <option value="ET">Ethiopia</option>
+                        <option value="FK">Falkland Islands</option>
+                        <option value="FO">Faroe Islands</option>
+                        <option value="FJ">Fiji</option>
+                        <option value="FI">Finland</option>
+                        <option value="FR">France</option>
+                        <option value="GF">French Guiana</option>
+                        <option value="PF">French Polynesia</option>
+                        <option value="TF">French Southern and Antarctic Lands</option>
+                        <option value="GA">Gabon</option>
+                        <option value="GM">Gambia</option>
+                        <option value="GE">Georgia</option>
+                        <option value="DE">Germany</option>
+                        <option value="GH">Ghana</option>
+                        <option value="GI">Gibraltar</option>
+                        <option value="GR">Greece</option>
+                        <option value="GL">Greenland</option>
+                        <option value="GD">Grenada</option>
+                        <option value="GP">Guadeloupe</option>
+                        <option value="GU">Guam</option>
+                        <option value="GT">Guatemala</option>
+                        <option value="GG">Guernsey</option>
+                        <option value="GN">Guinea</option>
+                        <option value="GW">Guinea-Bissau</option>
+                        <option value="GY">Guyana</option>
+                        <option value="HT">Haiti</option>
+                        <option value="HM">Heard Island and McDonald Islands</option>
+                        <option value="HN">Honduras</option>
+                        <option value="HK">Hong Kong</option>
+                        <option value="HU">Hungary</option>
+                        <option value="IS">Iceland</option>
+                        <option value="IN">India</option>
+                        <option value="ID">Indonesia</option>
+                        <option value="IR">Iran</option>
+                        <option value="IQ">Iraq</option>
+                        <option value="IE">Ireland</option>
+                        <option value="IL">Israel</option>
+                        <option value="IT">Italy</option>
+                        <option value="JM">Jamaica</option>
+                        <option value="JP">Japan</option>
+                        <option value="JE">Jersey</option>
+                        <option value="JO">Jordan</option>
+                        <option value="KZ">Kazakhstan</option>
+                        <option value="KE">Kenya</option>
+                        <option value="KI">Kiribati</option>
+                        <option value="KW">Kuwait</option>
+                        <option value="KG">Kyrgyzstan</option>
+                        <option value="LA">Laos</option>
+                        <option value="LV">Latvia</option>
+                        <option value="LB">Lebanon</option>
+                        <option value="LS">Lesotho</option>
+                        <option value="LR">Liberia</option>
+                        <option value="LY">Libya</option>
+                        <option value="LI">Liechtenstein</option>
+                        <option value="LT">Lithuania</option>
+                        <option value="LU">Luxembourg</option>
+                        <option value="MO">Macao</option>
+                        <option value="MK">Macedonia</option>
+                        <option value="MG">Madagascar</option>
+                        <option value="MW">Malawi</option>
+                        <option value="MY">Malaysia</option>
+                        <option value="MV">Maldives</option>
+                        <option value="ML">Mali</option>
+                        <option value="MT">Malta</option>
+                        <option value="MH">Marshall Islands</option>
+                        <option value="MQ">Martinique</option>
+                        <option value="MR">Mauritania</option>
+                        <option value="MU">Mauritius</option>
+                        <option value="YT">Mayotte</option>
+                        <option value="MX">Mexico</option>
+                        <option value="FM">Micronesia (Federated States of)</option>
+                        <option value="MD">Moldova</option>
+                        <option value="MC">Monaco</option>
+                        <option value="MN">Mongolia</option>
+                        <option value="ME">Montenegro</option>
+                        <option value="MS">Montserrat</option>
+                        <option value="MA">Morocco</option>
+                        <option value="MZ">Mozambique</option>
+                        <option value="MM">Myanmar</option>
+                        <option value="NA">Namibia</option>
+                        <option value="NR">Nauru</option>
+                        <option value="NP">Nepal</option>
+                        <option value="NL">Netherlands</option>
+                        <option value="NC">New Caledonia</option>
+                        <option value="NZ">New Zealand</option>
+                        <option value="NI">Nicaragua</option>
+                        <option value="NE">Niger</option>
+                        <option value="NG">Nigeria</option>
+                        <option value="NU">Niue</option>
+                        <option value="NF">Norfolk Island</option>
+                        <option value="MP">Northern Mariana Islands</option>
+                        <option value="NO">Norway</option>
+                        <option value="OM">Oman</option>
+                        <option value="PK">Pakistan</option>
+                        <option value="PW">Palau</option>
+                        <option value="PS">Palestinian Territory</option>
+                        <option value="PA">Panama</option>
+                        <option value="PG">Papua New Guinea</option>
+                        <option value="PY">Paraguay</option>
+                        <option value="PE">Peru</option>
+                        <option value="PH">Philippines</option>
+                        <option value="PN">Pitcairn Islands</option>
+                        <option value="PL">Poland</option>
+                        <option value="PT">Portugal</option>
+                        <option value="PR">Puerto Rico</option>
+                        <option value="QA">Qatar</option>
+                        <option value="RE">Réunion</option>
+                        <option value="RO">Romania</option>
+                        <option value="RU">Russia</option>
+                        <option value="RW">Rwanda</option>
+                        <option value="BL">Saint Barthélemy</option>
+                        <option value="SH">Saint Helena</option>
+                        <option value="KN">Saint Kitts and Nevis</option>
+                        <option value="LC">Saint Lucia</option>
+                        <option value="MF">Saint Martin (French part)</option>
+                        <option value="PM">Saint Pierre and Miquelon</option>
+                        <option value="VC">Saint Vincent and the Grenadines</option>
+                        <option value="WS">Samoa</option>
+                        <option value="SM">San Marino</option>
+                        <option value="ST">Sao Tome and Principe</option>
+                        <option value="SA">Saudi Arabia</option>
+                        <option value="SN">Senegal</option>
+                        <option value="RS">Serbia</option>
+                        <option value="SC">Seychelles</option>
+                        <option value="SL">Sierra Leone</option>
+                        <option value="SG">Singapore</option>
+                        <option value="SX">Sint Maarten</option>
+                        <option value="SK">Slovakia</option>
+                        <option value="SI">Slovenia</option>
+                        <option value="SB">Solomon Islands</option>
+                        <option value="SO">Somalia</option>
+                        <option value="ZA">South Africa</option>
+                        <option value="GS">South Georgia and the South Sandwich Islands</option>
+                        <option value="KR">South Korea</option>
+                        <option value="SS">South Sudan</option>
+                        <option value="ES">Spain</option>
+                        <option value="LK">Sri Lanka</option>
+                        <option value="SD">Sudan</option>
+                        <option value="SR">Suriname</option>
+                        <option value="SJ">Svalbard and Jan Mayen</option>
+                        <option value="SE">Sweden</option>
+                        <option value="CH">Switzerland</option>
+                        <option value="SY">Syria</option>
+                        <option value="TW">Taiwan</option>
+                        <option value="TJ">Tajikistan</option>
+                        <option value="TZ">Tanzania</option>
+                        <option value="TH">Thailand</option>
+                        <option value="TL">Timor-Leste</option>
+                        <option value="TG">Togo</option>
+                        <option value="TK">Tokelau</option>
+                        <option value="TO">Tonga</option>
+                        <option value="TT">Trinidad and Tobago</option>
+                        <option value="TN">Tunisia</option>
+                        <option value="TR">Turkey</option>
+                        <option value="TM">Turkmenistan</option>
+                        <option value="TC">Turks and Caicos Islands</option>
+                        <option value="TV">Tuvalu</option>
+                        <option value="UG">Uganda</option>
+                        <option value="UA">Ukraine</option>
+                        <option value="AE">United Arab Emirates</option>
+                        <option value="GB">United Kingdom</option>
+                        <option value="US" selected>United States</option>
+                        <option value="UY">Uruguay</option>
+                        <option value="UZ">Uzbekistan</option>
+                        <option value="VU">Vanuatu</option>
+                        <option value="VE">Venezuela</option>
+                        <option value="VN">Vietnam</option>
+                        <option value="WF">Wallis and Futuna</option>
+                        <option value="EH">Western Sahara</option>
+                        <option value="YE">Yemen</option>
+                        <option value="ZM">Zambia</option>
+                        <option value="ZW">Zimbabwe</option>
+                    </select>
+                    <div class="form-text">
+                        This value is applied in attribute <span class="badge text-bg-light">wts-country</span>
+                    </div>
+                </div>
+                <div class="mb-3">
+                    <label for="wts-tag" class="form-label">Your Tag</label>
+                    <input type="text" class="form-control" id="wts-tag" v-model="wtsTag" placeholder="Enter Tag" disabled>
+                    <div class="form-text">
+                        This value is applied in attribute <span class="badge text-bg-light">wts-tag</span> (Tag provided by BB Media)
+                    </div>
+                </div>
+                <div class="mb-3">
+                    <label for="wts-provider" class="form-label">Provider</label>
+                    <select class="form-select"  id="wts-provider" v-model="wtsProvider" placeholder="Enter Country"  aria-label="Enter Country">
+                        <option value="imdb">IMDb</option>
+                        <option value="tmdb">TMDB</option>
+                        <option value="tvdb">TVDB</option>
+                        <option value="eidr">EIDR</option>
+                        <option value="bb">BB UID</option>
+                    </select>
+                    <div class="form-text">
+                        This value is applied in attribute <span class="badge text-bg-light">wts-provider</span>
+                    </div>
+                </div>
+            </div>
+            <!-- Customize the widget -->
+        </div>
+    </div>
+    </div>
     <script>
       const { createApp, ref, nextTick, onMounted, watch } = Vue;
 
       createApp({
         setup() {
-          const wtsId = ref('tt0060028');
+          const wtsId = ref('tt1520211');
           const wtsType = ref('series');
-          const wtsCountry = ref('AR');
+          const wtsCountry = ref('US');
           const wtsTag = ref('wts');
           const wtsProvider = ref('imdb');
 
